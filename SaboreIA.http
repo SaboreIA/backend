@@ -1,0 +1,6 @@
+@SaboreIA_HostAddress = http://localhost:5001
+
+GET {{SaboreIA_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
