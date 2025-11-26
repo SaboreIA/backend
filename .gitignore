@@ -11,11 +11,18 @@ appsettings.Staging.json
 
 # ? MAS permitir arquivos de exemplo (sem dados sensíveis)
 !appsettings.Example.json
+!appsettings.Test.json
 
 # dotenv files
 .env
 .env.local
 .env.*.local
+
+# SQLite test database
+*.db
+*.db-shm
+*.db-wal
+test_database.db
 
 # User-specific files
 *.rsuser

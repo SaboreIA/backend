@@ -65,13 +65,26 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// DB — PostgreSQL (SUPABASE)
+// Database Configuration - SQLite para testes, PostgreSQL para produção
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var isTestEnvironment = builder.Environment.EnvironmentName == "Test";
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString)
-           .EnableSensitiveDataLogging()
-           .EnableDetailedErrors());
+{
+    if (isTestEnvironment || connectionString?.Contains(".db") == true)
+    {
+        // SQLite para ambiente de teste
+        options.UseSqlite(connectionString);
+    }
+    else
+    {
+        // PostgreSQL para produção
+        options.UseNpgsql(connectionString);
+    }
+    
+    options.EnableSensitiveDataLogging();
+    options.EnableDetailedErrors();
+});
 
 // JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
@@ -147,8 +160,19 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Aplicar migrations automaticamente em ambiente de teste
+if (isTestEnvironment)
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        db.Database.EnsureDeleted(); // Limpa o banco anterior
+        db.Database.EnsureCreated(); // Cria o banco com o schema atualizado
+    }
+}
+
 // Swagger
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || isTestEnvironment)
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>

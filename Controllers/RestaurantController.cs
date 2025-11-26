@@ -176,7 +176,7 @@ namespace SaboreIA.Controllers
                     return NotFound(new { message = "Restaurant not found" });
 
                 // Validar se o usuário é o owner do restaurante ou admin
-                var authorizationResult = await _authorizationService.AuthorizeAsync(User, restaurant.Id, "IsOwnerOrAdmin");
+                var authorizationResult = await _authorizationService.AuthorizeAsync(User, restaurant.OwnerId, "IsOwnerOrAdmin");
                 if (!authorizationResult.Succeeded)
                     return Forbid();
 

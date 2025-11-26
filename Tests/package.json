@@ -1,0 +1,30 @@
+{
+  "name": "saboreia-api-tests",
+  "version": "1.0.0",
+  "description": "Testes E2E para a API SaboreIA usando Cypress",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "cypress run",
+    "test:headed": "cypress run --headed",
+    "test:auth": "cypress run --spec 'cypress/e2e/auth.cy.js'",
+    "test:favorite": "cypress run --spec 'cypress/e2e/favorite.cy.js'",
+    "test:health": "cypress run --spec 'cypress/e2e/health.cy.js'",
+    "test:products": "cypress run --spec 'cypress/e2e/products.cy.js'",
+    "test:restaurant": "cypress run --spec 'cypress/e2e/restaurant.cy.js'",
+    "test:review": "cypress run --spec 'cypress/e2e/review.cy.js'",
+    "test:tag": "cypress run --spec 'cypress/e2e/tag.cy.js'",
+    "test:user": "cypress run --spec 'cypress/e2e/user.cy.js'"
+  },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "testing",
+    "api"
+  ],
+  "author": "SaboreIA Team",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  }
+}
