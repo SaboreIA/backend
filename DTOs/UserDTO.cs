@@ -81,7 +81,7 @@ namespace SaboreIA.DTOs
         public string? ImageUrl { get; set; }
 
         /// <summary>
-        /// Papel/função do usuário (USER, OWNER, ADMIN)
+        /// Papel/função do usuário (USER, ADMIN)
         /// </summary>
         public UserRole Role { get; set; }
 

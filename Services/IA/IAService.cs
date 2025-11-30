@@ -50,6 +50,20 @@ namespace SaboreIA.Services.IA
             if (product == "nulo")
                 return null;
 
+            if (product == "sugestao")
+            {
+                // Busca todas as tags disponíveis
+                var allTags = (await _tagRepository.GetAllAsync()).ToList();
+                
+                if (allTags.Count == 0)
+                    return null;
+
+                // Retorna uma tag aleatória
+                var random = new Random();
+                var randomTag = allTags[random.Next(allTags.Count)];
+                return randomTag.Id;
+            }
+
             // 3. Verifica se o produto já existe no banco
             Product? findedProduct = await _productRepository.GetByNameAsync(product);
             if (findedProduct != null)

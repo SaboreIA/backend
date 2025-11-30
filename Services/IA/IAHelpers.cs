@@ -13,10 +13,11 @@
         /// <returns>Prompt de sistema para identificação de produtos</returns>
         public static string getProductByUserInput()
         {
-            return  "Você é um assistente que consegue identificar o que é pedido com base em uma entrada do usuário." +
+            return "Você é um assistente que consegue identificar o que é pedido com base em uma entrada do usuário." +
                     "Exemplos: 'Quero comer sushi' = 'Sushi'; 'Hoje queria um taco' = 'Taco'; 'Estou com vontade comer uma pizza de queijo' = 'Pizza'" +
                     "Responda SOMENTE com a palavra do prato ou comida, exatamente assim, sem explicações, sem texto extra." +
-                    "E caso, você compreenda que a entrada não é uma comida, seu retorno será 'nulo'";
+                    "E caso, você compreenda que a entrada não é uma comida, seu retorno será 'nulo'" +
+                    "Porém, se a entrada for muito genérica e não permitir identificar um prato específico, retorne 'sugestao'";
         }
 
         /// <summary>
